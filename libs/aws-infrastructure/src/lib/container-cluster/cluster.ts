@@ -2,6 +2,7 @@ import { Cluster, ICluster } from '@aws-cdk/aws-ecs';
 import {
   Construct
 } from '@aws-cdk/core';
+import { KnittingVPC } from "../vpc/vpc";
 
 export class ContainerCluster extends Construct {
   static readonly CLUSTER_NAME = 'knitting-cluster';
@@ -15,7 +16,7 @@ export class ContainerCluster extends Construct {
     return Cluster.fromClusterAttributes(scope, 'knitting-cluster', {
       clusterName: ContainerCluster.CLUSTER_NAME,
       securityGroups: [],
-      vpc: undefined
+      vpc: KnittingVPC.getVpc(scope)
     })
   }
 }
