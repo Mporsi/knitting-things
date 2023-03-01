@@ -11,6 +11,7 @@ export class Backend extends Construct {
   constructor(scope: Construct, id: string, props: BackendProps = {}) {
     super(scope, id);
 
+
     // Define construct contents here
 
     // example resource

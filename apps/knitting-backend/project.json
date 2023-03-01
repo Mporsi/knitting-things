@@ -112,7 +112,8 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": [
-          "cdk"
+          "tsc -p apps/knitting-backend/tsconfig.infra.json",
+          "cdk deploy --app 'npx ts-node --prefer-ts-exts apps/knitting-backend/src/infrastructure/index.ts'"
         ]
       }
 

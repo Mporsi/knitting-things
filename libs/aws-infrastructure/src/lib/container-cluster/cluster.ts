@@ -1,12 +1,10 @@
-import { Cluster, ICluster } from '@aws-cdk/aws-ecs';
-import {
-  Construct
-} from '@aws-cdk/core';
+
 import { KnittingVPC } from "../vpc/vpc";
+import { Construct } from "constructs";
+import { Cluster, ICluster } from "aws-cdk-lib/aws-ecs";
 
 export class ContainerCluster extends Construct {
   static readonly CLUSTER_NAME = 'knitting-cluster';
-  cluster: Cluster;
 
   constructor(scope: Construct, id: string) {
     super(scope, id);
