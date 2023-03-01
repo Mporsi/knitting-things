@@ -2,6 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "files": [],
   "include": [],
+  "exclude": [
+    "cdk.out"
+  ],
   "references": [
     {
       "path": "./tsconfig.app.json"
