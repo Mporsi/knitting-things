@@ -23,17 +23,17 @@ import { KnittingVPC } from "../vpc/vpc";
 
 export interface DatabaseBaseStackProps extends StackProps {
   stage: string;
-  defaultSecurityGroup: ISecurityGroup;
+  vpc:Vpc
+  defaultSecurityGroup: ISecurityGroup
 }
 
 export class Database extends Construct{
-  public readonly vpc: IVpc;
   public readonly rdsInstance: DatabaseInstance;
   public readonly databaseCredentialsSecret: Secret;
 
   constructor(scope: Construct, id: string, props: DatabaseBaseStackProps) {
     super(scope, id);
-    this.vpc = KnittingVPC.getVpc(scope);
+
     // first, lets generate a secret to be used as credentials for our database
     this.databaseCredentialsSecret = new Secret(this, `${props?.stage}-DBCredentialsSecret`, {
       secretName: `${props?.stage}-credentials`,
@@ -62,10 +62,10 @@ export class Database extends Construct{
 
     // finally, lets configure and create our database!
     const rdsConfig: DatabaseInstanceProps = {
-      engine: DatabaseInstanceEngine.postgres({ version: PostgresEngineVersion.VER_12_3 }),
+      engine: DatabaseInstanceEngine.postgres({ version: PostgresEngineVersion.VER_14_6 }),
       // optional, defaults to m5.large
-      instanceType: InstanceType.of(InstanceClass.BURSTABLE2, InstanceSize.SMALL),
-      vpc: this.vpc,
+      instanceType: InstanceType.of(InstanceClass.BURSTABLE3, InstanceSize.SMALL),
+      vpc: props.vpc,
       // make the db publically accessible
       vpcSubnets: {
         subnetType: SubnetType.PUBLIC,

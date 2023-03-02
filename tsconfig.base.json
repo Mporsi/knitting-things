@@ -14,11 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@knitting-things/aws-infrastructure": [
-        "libs/aws-infrastructure/src/index.ts"
-      ]
-    }
+    "paths": {},
   },
   "exclude": ["node_modules", "tmp", "cdk.out"]
 }

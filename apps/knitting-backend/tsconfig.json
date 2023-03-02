@@ -3,7 +3,6 @@
   "files": [],
   "include": [],
   "exclude": [
-    "cdk.out"
   ],
   "references": [
     {
@@ -14,6 +13,7 @@
     }
   ],
   "compilerOptions": {
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "module": "commonjs"
   }
 }

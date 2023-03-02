@@ -57,66 +57,29 @@
         }
       }
     },
-    "prisma-generate": {
-      "executor": "@nx-tools/nx-prisma:generate",
-      "options": {
-        "schema": "prisma/schema.prisma"
-      }
-    },
-    "prisma-migrate": {
-      "executor": "@nx-tools/nx-prisma:migrate",
-      "options": {
-        "schema": "prisma/schema.prisma"
-      }
-    },
-    "prisma-pull": {
-      "executor": "@nx-tools/nx-prisma:pull",
-      "options": {
-        "schema": "prisma/schema.prisma"
-      }
-    },
-    "prisma-push": {
-      "executor": "@nx-tools/nx-prisma:push",
-      "options": {
-        "schema": "prisma/schema.prisma"
-      }
-    },
-    "prisma-deploy": {
-      "executor": "@nx-tools/nx-prisma:deploy",
-      "options": {
-        "schema": "prisma/schema.prisma"
-      }
-    },
-    "prisma-status": {
-      "executor": "@nx-tools/nx-prisma:status",
-      "options": {
-        "schema": "prisma/schema.prisma"
-      }
-    },
-    "prisma-studio": {
-      "executor": "@nx-tools/nx-prisma:studio",
-      "options": {
-        "schema": "prisma/schema.prisma"
-      }
-    },
-    "infra-bootstrap": {
+    "typeorm-migration-generate": {
       "executor": "nx:run-commands",
       "options": {
+        "cwd": "apps/knitting-backend",
         "commands": [
-          "cdk bootstrap aws://774741736765/eu-north-1"
-        ]
+          {
+            "command": "ts-node --project ./tsconfig.json ../../node_modules/typeorm/cli migration:generate --dataSource typeOrm.config.ts ./src/migrations/migration"
+          }
+        ],
+        "parallel": false
       }
-
     },
-    "infra-deploy": {
+    "typeorm-migration-run": {
       "executor": "nx:run-commands",
       "options": {
+        "cwd": "apps/knitting-backend",
         "commands": [
-          "tsc -p apps/knitting-backend/tsconfig.infra.json",
-          "cdk deploy --app 'npx ts-node --prefer-ts-exts apps/knitting-backend/src/infrastructure/index.ts'"
-        ]
+          {
+            "command": "ts-node --project ./tsconfig.json ../../node_modules/typeorm/cli migration:run --dataSource typeOrm.config.ts"
+          }
+        ],
+        "parallel": false
       }
-
     }
   },
   "tags": []

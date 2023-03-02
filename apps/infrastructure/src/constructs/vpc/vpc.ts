@@ -26,11 +26,4 @@ export class KnittingVPC extends Construct {
       this.defaultSecurityGroup.addIngressRule(Peer.ipv4(props.myIpAddress), Port.tcp(5432), 'allow 5432 access from my IP');
     }
 }
-
-  static getVpc(scope: Construct){
-    const vpcInterface = Vpc.fromLookup(scope, 'knitting-vpc',{
-      vpcName: KnittingVPC.VPC_NAME
-    })
-    return vpcInterface;
-  }
 }

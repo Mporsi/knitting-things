@@ -6,7 +6,9 @@
   "targets": {
     "deploy": {
       "executor": "@codebrew/nx-aws-cdk:deploy",
-      "options": {}
+      "options": {
+        "require-approval": "never"
+      }
     },
     "destroy": {
       "executor": "@codebrew/nx-aws-cdk:destroy",
